@@ -22,11 +22,11 @@ jobs:
 
       - uses: actions/checkout@v2
         with:
-          repository: "jhinning/sync-repo2"
+          repository: "https://jhinning:${{ secrets.GITLAB_PAT }}@gitlab.com/jhinning/repo-sync3"
 
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: "main"
           github_token: ${{ secrets.PAT_TOKEN }}
-          # destination_repository: "jhinning/sync-repo2" #<- You can also do this but not necessary
+          destination_repository: "https://jhinning:${{ secrets.GITLAB_PAT }}@gitlab.com/jhinning/repo-sync3" #<- You can also do this but not necessary
