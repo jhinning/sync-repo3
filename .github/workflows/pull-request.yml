@@ -27,6 +27,6 @@ jobs:
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:
-          destination_branch: "develop"
+          destination_branch: "main"
           github_token: ${{ secrets.PAT_TOKEN }}
           # destination_repository: "jhinning/sync-repo2" #<- You can also do this but not necessary
