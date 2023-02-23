@@ -15,12 +15,12 @@ jobs:
         name: Sync repo to branch
         with:
           source_repo: "https://jhinning:${{ secrets.GITLAB_PAT }}@gitlab.com/jhinning/repo-sync3"
-          source_branch: develop
+          source_branch: main
           destination_branch: "repo-sync"
           github_token: ${{ secrets.PAT_TOKEN }}
       - uses: repo-sync/pull-request@v2
         name: Create pull request
         with:
           source_branch: "repo-sync"
-          destination_branch: develop
+          destination_branch: main
           github_token: ${{ secrets.PAT_TOKEN }}
