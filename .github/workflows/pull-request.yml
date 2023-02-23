@@ -1,0 +1,32 @@
+name: Create pull request
+on:
+  push:
+    branches-ignore:
+      - main
+      - develop
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Branch name
+        run: echo running on branch ${{ github.head_ref || github.ref_name }}
+
+      - name: git-sync
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "https://jhinning:${{ secrets.PAT_TOKEN }}@github.com/jhinning/sync-repo3.git"
+          source_branch: ${{ github.head_ref || github.ref_name }}
+          destination_repo: "https://jhinning:${{ secrets.GITLAB_PAT }}@gitlab.com/jhinning/repo-sync3"
+          destination_branch: ${{ github.head_ref || github.ref_name }}
+
+      - uses: actions/checkout@v2
+        with:
+          repository: "jhinning/sync-repo2"
+
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "develop"
+          github_token: ${{ secrets.PAT_TOKEN }}
+          # destination_repository: "jhinning/sync-repo2" #<- You can also do this but not necessary
