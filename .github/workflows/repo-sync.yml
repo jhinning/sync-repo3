@@ -1,6 +1,7 @@
 name: Repo Sync
 
 on:
+  push:
   schedule:
     - cron: "*/1 * * * *" # every 15 minutes. set to whatever interval you like
 
